@@ -95,12 +95,12 @@ public class NioServer {
         //创建buffer
         ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
         //循环读取客户端请求信息
-        String request = "";
+        StringBuilder request = new StringBuilder();
         while (socketChannel.read(byteBuffer) > 0){
             //切换buffer为读模式
             byteBuffer.flip();
             //读取buffer中内容
-            request += Charset.forName("UTF-8").decode(byteBuffer);
+            request.append(Charset.forName("UTF-8").decode(byteBuffer));
 
         }
         //将channel再次注册到selector中，监听其可读事件
@@ -108,7 +108,7 @@ public class NioServer {
         //将客户端发送的请求信息广播给其它客户端
         if (request.length() > 0){
             //广播给其他客户端
-            broadCast(selector,socketChannel,request);
+            broadCast(selector,socketChannel, request.toString());
         }
     }
 
