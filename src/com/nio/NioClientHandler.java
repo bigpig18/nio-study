@@ -1,6 +1,5 @@
 package com.nio;
 
-import com.sun.org.apache.xml.internal.resolver.readers.ExtendedXMLCatalogReader;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;

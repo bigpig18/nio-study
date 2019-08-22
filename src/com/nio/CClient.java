@@ -10,6 +10,6 @@ public class CClient {
 
     public static void main(String[] args) throws IOException {
         NioClient nioClient = new NioClient();
-        nioClient.start("bClient");
+        nioClient.start("cClient");
     }
 }
