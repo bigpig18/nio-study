@@ -13,12 +13,12 @@ import java.util.Scanner;
  * @author li
  * @date 2019/8/21
  */
-public class NioClient {
+class NioClient {
 
     /**
      * 启动
      */
-    public void start(String nickName) throws IOException {
+    void start(String nickName) throws IOException {
         //连接服务器端
         System.out.println("正在连接服务器...");
         SocketChannel socketChannel = SocketChannel.open(new InetSocketAddress("127.0.0.1",8000));

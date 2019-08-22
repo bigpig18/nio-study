@@ -24,7 +24,7 @@ public class NioServer {
     /**
      * 启动
      */
-    public void start() throws IOException {
+    private void start() throws IOException {
         //1.创建一个Selector
         Selector selector = Selector.open();
 
@@ -62,7 +62,7 @@ public class NioServer {
                 //7.根据就绪状态，调用对应方法处理对应逻辑
                 //TODO 如果是接入事件
                 if (selectionKey.isAcceptable()){
-                    accepctHandler(serverSocketChannel,selector);
+                    acceptHandler(serverSocketChannel,selector);
                 }
                 //TODO 如果是可读事件
                 if (selectionKey.isReadable()){
@@ -75,7 +75,7 @@ public class NioServer {
     /**
      * 接入事件处理器
      */
-    private void accepctHandler(ServerSocketChannel serverSocketChannel,Selector selector) throws IOException {
+    private void acceptHandler(ServerSocketChannel serverSocketChannel,Selector selector) throws IOException {
         //如果是接入事件，创建socketChannel
         SocketChannel socketChannel = serverSocketChannel.accept();
         //将Channel设置为非阻塞工作模式

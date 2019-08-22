@@ -19,7 +19,7 @@ public class NioClientHandler implements Runnable{
 
     private Selector selector;
 
-    public NioClientHandler(Selector selector){
+    NioClientHandler(Selector selector){
         this.selector = selector;
     }
 
@@ -62,12 +62,12 @@ public class NioClientHandler implements Runnable{
         //创建buffer
         ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
         //循环读取服务器端响应信息
-        String response = "";
+        StringBuilder response = new StringBuilder();
         while (socketChannel.read(byteBuffer) > 0){
             //切换buffer为读模式
             byteBuffer.flip();
             //读取buffer中内容
-            response += Charset.forName("UTF-8").decode(byteBuffer);
+            response.append(Charset.forName("UTF-8").decode(byteBuffer));
 
         }
         //将channel再次注册到selector中，监听其可读事件
